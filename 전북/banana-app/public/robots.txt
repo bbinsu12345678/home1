@@ -2,11 +2,18 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /admin/
+Disallow: /_next/
 
+# Google Bot
 User-agent: Googlebot
 Allow: /
 
+# Naver Bot (Yeti)
 User-agent: Yeti
 Allow: /
 
-Sitemap: https://banana-piping.netlify.app/sitemap.xml
+# Daum Bot
+User-agent: Daumoa
+Allow: /
+
+Sitemap: https://banana-piping.com/sitemap.xml

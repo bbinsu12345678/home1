@@ -34,7 +34,13 @@ export async function generateStaticParams() {
                 const keywordStr = `${perm.join("")} ${tail}`;
 
                 paths.push({
-                    slug: [region.sido, region.si, region.gugun, region.dong, keywordStr].filter(Boolean)
+                    slug: [
+                        region.sido,
+                        region.si,
+                        region.gugun,
+                        region.dong,
+                        keywordStr
+                    ].filter(Boolean).map(s => encodeURIComponent(s))
                 });
             }
         }
@@ -61,36 +67,88 @@ export async function generateMetadata({ params }: { params: Params }) {
     const regionPart = decodedSlug.slice(0, 4).join(" "); // 시도, 시, 구군, 동
     const keywordPart = decodedSlug[4]; // 5번째가 키워드
 
-    // 구조화된 데이터 (Schema.org JSON-LD)
-    const structuredData = {
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://banana-piping.com';
+    const pageUrl = `${siteUrl}/${decodedSlug.map(s => encodeURIComponent(s)).join('/')}`;
+
+    // 구조화된 데이터 (Schema.org JSON-LD) - 지역 비즈니스
+    const localBusinessData = {
         "@context": "https://schema.org",
         "@type": "LocalBusiness",
-        "name": "바나나배관 올케어",
-        "description": `${regionPart} ${keywordPart} 전문 업체`,
+        "name": `바나나배관 올케어 ${regionPart}`,
+        "description": `${regionPart} ${keywordPart} 전문 업체. 30분내 방문, 출장비 무료, 못 뚫으면 0원!`,
+        "image": `${siteUrl}/images/brand_logo.png`,
         "address": {
             "@type": "PostalAddress",
             "addressRegion": regionPart,
             "addressCountry": "KR"
         },
-        "telephone": "1588-0000",
+        "telephone": "010-8184-3496",
         "priceRange": "₩₩",
         "openingHours": "Mo-Su 00:00-24:00",
         "areaServed": {
             "@type": "Place",
             "name": regionPart
         },
-        "serviceType": keywordPart
+        "serviceType": keywordPart,
+        "url": pageUrl,
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "127"
+        }
+    };
+
+    // 빵 부스러기 (Breadcrumb) 구조화 데이터
+    const breadcrumbData = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "홈",
+                "item": siteUrl
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": decodedSlug[0],
+                "item": `${siteUrl}/${encodeURIComponent(decodedSlug[0])}`
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": decodedSlug[1],
+                "item": `${siteUrl}/${encodeURIComponent(decodedSlug[0])}/${encodeURIComponent(decodedSlug[1])}`
+            },
+            {
+                "@type": "ListItem",
+                "position": 4,
+                "name": `${regionPart} ${keywordPart}`,
+                "item": pageUrl
+            }
+        ]
     };
 
     return {
-        title: `${regionPart} ${keywordPart} | 바나나배관 올케어`,
-        description: `${regionPart} ${keywordPart} 전문 업체. 30분내 방문, 출장비 무료, 못 뚫으면 0원!`,
-        keywords: `${regionPart}, ${keywordPart}, 배관막힘, 긴급출동, 24시간, 출장비무료, 바나나배관`,
+        title: `${regionPart} ${keywordPart}`,
+        description: `${regionPart} ${keywordPart} 전문 업체. 30분내 방문, 출장비 무료, 못 뚫으면 0원! 24시간 긴급출동 서비스. 전화: 010-8184-3496`,
+        keywords: [regionPart, keywordPart, "배관막힘", "긴급출동", "24시간", "출장비무료", "바나나배관", "전북", decodedSlug[0], decodedSlug[1], decodedSlug[2], decodedSlug[3]],
         openGraph: {
             title: `${regionPart} ${keywordPart}`,
-            description: `전국 30분 출동! ${regionPart} 배관 막힘 해결은 바나나배관에서.`,
+            description: `전국 30분 출동! ${regionPart} 배관 막힘 해결은 바나나배관에서. 24시간 긴급출동`,
             type: "website",
             locale: "ko_KR",
+            url: pageUrl,
+            siteName: "바나나배관 올케어",
+            images: [
+                {
+                    url: `${siteUrl}/images/brand_logo.png`,
+                    width: 800,
+                    height: 600,
+                    alt: `${regionPart} ${keywordPart} - 바나나배관 올케어`,
+                }
+            ],
         },
         robots: {
             index: true,
@@ -104,10 +162,10 @@ export async function generateMetadata({ params }: { params: Params }) {
             },
         },
         alternates: {
-            canonical: `${process.env.NEXT_PUBLIC_SITE_URL}/${slug.map(s => encodeURIComponent(s)).join('/')}`
+            canonical: pageUrl
         },
         other: {
-            'application/ld+json': JSON.stringify(structuredData)
+            'application/ld+json': JSON.stringify([localBusinessData, breadcrumbData])
         }
     };
 }
