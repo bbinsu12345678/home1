@@ -44,6 +44,9 @@ export const metadata: Metadata = {
       'naver-site-verification': 'naver-site-verification-code',
     },
   },
+  alternates: {
+    canonical: 'https://bananajeonju.netlify.app'
+  }
 };
 
 export default function RootLayout({
