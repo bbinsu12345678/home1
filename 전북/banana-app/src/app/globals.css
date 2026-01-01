@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+:root {
+  --banana-yellow: #FFD700;
+  --banana-red: #E63946;
+  --banana-black: #1A1A1A;
+}
+
+@theme {
+  --color-banana-yellow: var(--banana-yellow);
+  --color-banana-red: var(--banana-red);
+  --color-banana-black: var(--banana-black);
+}
+
+/* Custom Utilities */
+@utility text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+@utility text-shadow-strong {
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+}
