@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     const regionPart = `${region.sido} ${region.si} ${region.gugun} ${region.dong}`.replace(/  +/g, ' ').trim();
     const keywordPart = slug[4]; // The keyword string (e.g. "변기막힘 10곳 비교")
 
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://banana-piping.com';
+    const siteUrl = 'https://bananajeonju.netlify.app';
     // Canonical URL uses the ID now
     const pageUrl = `${siteUrl}/${id}`;
 

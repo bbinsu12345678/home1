@@ -16,4 +16,4 @@ Allow: /
 User-agent: Daumoa
 Allow: /
 
-Sitemap: https://banana-piping.com/sitemap.xml
+Sitemap: https://bananajeonju.netlify.app/sitemap.xml

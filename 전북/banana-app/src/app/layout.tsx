@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://banana-piping.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://bananajeonju.netlify.app'),
   title: {
     default: "바나나배관 올케어 | 전국 24시간 배관막힘 긴급출동",
     template: "%s | 바나나배관 올케어"

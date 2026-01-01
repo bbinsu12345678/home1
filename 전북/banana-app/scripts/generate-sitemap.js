@@ -18,7 +18,7 @@ function generatePermutations(arr) {
     return permutations;
 }
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://banana-piping.com';
+const siteUrl = 'https://bananajeonju.netlify.app';
 const currentDate = new Date().toISOString();
 
 let urls = [];
