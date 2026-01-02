@@ -12,7 +12,7 @@ const Footer = () => {
                         frameBorder="0"
                         scrolling="no"
                         referrerPolicy="unsafe-url"
-                        // @ts-expect-error
+                        // @ts-expect-error -- nonstandard iframe attribute
                         browsingtopics="true"
                     ></iframe>
                     <iframe
@@ -22,7 +22,7 @@ const Footer = () => {
                         frameBorder="0"
                         scrolling="no"
                         referrerPolicy="unsafe-url"
-                        // @ts-expect-error
+                        // @ts-expect-error -- nonstandard iframe attribute
                         browsingtopics="true"
                     ></iframe>
                     <iframe
@@ -32,7 +32,7 @@ const Footer = () => {
                         frameBorder="0"
                         scrolling="no"
                         referrerPolicy="unsafe-url"
-                        // @ts-expect-error
+                        // @ts-expect-error -- nonstandard iframe attribute
                         browsingtopics="true"
                     ></iframe>
                     <iframe
@@ -42,7 +42,7 @@ const Footer = () => {
                         frameBorder="0"
                         scrolling="no"
                         referrerPolicy="unsafe-url"
-                        // @ts-expect-error
+                        // @ts-expect-error -- nonstandard iframe attribute
                         browsingtopics="true"
                     ></iframe>
                 </div>
