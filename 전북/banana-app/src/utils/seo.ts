@@ -1,11 +1,27 @@
 import { PageData } from "./pageData";
 
+// Title 생성 함수 - 6가지 패턴을 페이지 ID 기반으로 순환
+export const generateSeoTitle = (regionName: string, keyword: string, pageId: string): string => {
+    const id = parseInt(pageId);
+    const patterns = [
+        `${regionName} ${keyword} 견적 비교는 어떻게 해야 효율적일까요?`,
+        `${regionName} ${keyword} 가까운 곳`,
+        `${regionName} ${keyword} 빠른 출동 업체`,
+        `${regionName} ${keyword} 지도 보고 바로 문의하기`,
+        `${regionName}에서 찾아본 ${keyword}`,
+        `${regionName} ${keyword} 24시간 긴급 상담`
+    ];
+    return patterns[id % 6];
+};
+
 export const generateSeoDescription = (regionName: string, keyword: string): string => {
     return `${regionName} 일대 ${keyword} 등 5개 업종 기준으로 검색에서 찾은 업체 중 위치·주소 정보가 명확한 곳의 위치와 지도를 한 화면에서 확인할 수 있습니다.`;
 };
 
-export const generateJsonLd = (regionName: string, keyword: string) => {
-    const datePublished = new Date().toISOString(); // dynamic timestamp
+export const generateJsonLd = (regionName: string, keyword: string, pageId?: string) => {
+    // 참조 사이트와 동일하게 고정 날짜 사용
+    const datePublished = "2025-12-11T15:23:54+01:00";
+    const dateModified = new Date().toISOString();
 
     const articleSchema = {
         "@context": "https://schema.org",
@@ -16,10 +32,16 @@ export const generateJsonLd = (regionName: string, keyword: string) => {
             "name": "관리자"
         },
         "datePublished": datePublished,
-        "dateModified": datePublished,
+        "dateModified": dateModified,
         "publisher": {
             "@type": "Organization",
             "name": "지역업체 안내"
+        },
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://bananajeonju.netlify.app/images/fixed/1.png",
+            "width": 800,
+            "height": 600
         }
     };
 
@@ -94,7 +116,19 @@ export const generateJsonLd = (regionName: string, keyword: string) => {
         ]
     };
 
-    return { articleSchema, faqSchema };
+    const videoSchema = {
+        "@context": "https://schema.org",
+        "@type": "VideoObject",
+        "name": `${regionName} ${keyword} 현장 영상`,
+        "description": `${regionName} 지역 ${keyword} 실제 작업 케이스 - 바나나배관 전문가의 작업 과정`,
+        "thumbnailUrl": "https://img.youtube.com/vi/DL-zlugGLvg/maxresdefault.jpg",
+        "uploadDate": datePublished,
+        "contentUrl": "https://www.youtube.com/watch?v=DL-zlugGLvg",
+        "embedUrl": "https://www.youtube.com/embed/DL-zlugGLvg",
+        "duration": "PT5M"
+    };
+
+    return { articleSchema, faqSchema, videoSchema };
 };
 
 export const generatePermutations = (arr: string[]): string[][] => {

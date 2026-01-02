@@ -1,4 +1,5 @@
-import { PhoneIcon, ChatBubbleLeftRightIcon } from '@heroicons/react/24/solid';
+import Image from 'next/image';
+import { ChatBubbleLeftRightIcon } from '@heroicons/react/24/solid';
 
 const FloatingCTA = () => {
     return (
@@ -8,7 +9,14 @@ const FloatingCTA = () => {
                     href="tel:010-8184-3496"
                     className="flex-1 bg-banana-red text-white py-3 rounded-xl flex justify-center items-center gap-2 font-bold text-lg shadow-lg active:scale-95 transition"
                 >
-                    <PhoneIcon className="h-6 w-6" />
+                    <div className="relative w-8 h-8 rounded-full overflow-hidden border-2 border-white/30">
+                        <Image
+                            src="/images/banana_mascot.png"
+                            alt="바나나배관 캐릭터"
+                            fill
+                            className="object-cover"
+                        />
+                    </div>
                     전화 상담
                 </a>
                 <a

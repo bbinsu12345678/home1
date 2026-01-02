@@ -7,14 +7,14 @@ import FloatingCTA from "@/components/FloatingCTA";
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://bananajeonju.netlify.app'),
   title: {
-    default: "바나나배관 올케어 | 전국 24시간 배관막힘 긴급출동",
-    template: "%s | 바나나배관 올케어"
+    default: "전주시 전북 배관막힘 긴급출동 | 지역업체 안내",
+    template: "%s"
   },
-  description: "전북 전국 어디서나 30분 빠른 출동! 변기막힘, 싱크대막힘, 하수구막힘 전문. 24시간 긴급출동, 출장비 무료, 못 뚫으면 0원!",
-  keywords: ["배관막힘", "변기막힘", "싱크대막힘", "하수구막힘", "배관청소", "긴급출동", "24시간", "전북", "전주", "익산", "군산", "정읍", "남원", "김제"],
-  authors: [{ name: "바나나배관 올케어" }],
-  creator: "바나나배관 올케어",
-  publisher: "바나나배관 올케어",
+  description: "전주시 전북 일대 배관막힘, 변기막힘, 싱크대막힘, 하수구막힘 전문 업체 정보. 위치·주소 정보가 명확한 곳의 위치와 지도를 한 화면에서 확인할 수 있습니다.",
+  keywords: ["배관막힘", "변기막힘", "싱크대막힘", "하수구막힘", "배관청소", "긴급출동", "24시간", "전북", "전주", "익산", "군산", "정읍", "남원", "김제", "지역업체"],
+  authors: [{ name: "관리자" }],
+  creator: "지역업체 안내",
+  publisher: "지역업체 안내",
   formatDetection: {
     telephone: true,
     email: false,
@@ -23,9 +23,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'ko_KR',
-    siteName: '바나나배관 올케어',
-    title: '바나나배관 올케어 | 전국 24시간 배관막힘 긴급출동',
-    description: '전북 전국 어디서나 30분 빠른 출동! 변기막힘, 싱크대막힘, 하수구막힘 전문. 24시간 긴급출동 서비스',
+    siteName: '지역업체 안내',
+    title: '전주시 전북 배관막힘 긴급출동',
+    description: '전주시 전북 일대 배관막힘 업체 정보를 한눈에 확인하세요',
+    images: [{
+      url: 'https://bananajeonju.netlify.app/images/fixed/1.png',
+      width: 1200,
+      height: 630,
+      alt: '전주시 전북 배관막힘 전문 업체',
+    }],
   },
   robots: {
     index: true,

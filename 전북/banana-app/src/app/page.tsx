@@ -4,8 +4,33 @@ import keywords from "../../data/keywords.json";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "바나나배관 올케어 | 전북 전국 24시 배관막힘 긴급출동",
-  description: "전북 전 지역 30분 내 빠른 출동! 변기막힘, 싱크대막힘, 하수구막힘 해결 전문. 못 뚫으면 0원, 출장비 무료!",
+  title: "전주시 전북 배관막힘 10곳 견적 비교는 어떻게 해야 효율적일까요?",
+  description: "전주시 전북 일대 배관막힘 등 5개 업종 기준으로 검색에서 찾은 업체 중 위치·주소 정보가 명확한 곳의 위치와 지도를 한 화면에서 확인할 수 있습니다.",
+  keywords: ["전주시", "전북", "배관막힘", "변기막힘", "싱크대막힘", "하수구막힘", "배관청소", "24시간 출동", "긴급출동"],
+  openGraph: {
+    title: "전주시 전북 배관막힘 10곳 견적 비교",
+    description: "전주시 전북 일대 배관막힘 등 5개 업종 기준으로 검색에서 찾은 업체 중 위치·주소 정보가 명확한 곳의 위치와 지도를 한 화면에서 확인할 수 있습니다.",
+    url: "https://bananajeonju.netlify.app",
+    siteName: "지역업체 안내",
+    type: "website",
+    locale: "ko_KR",
+    images: [{
+      url: "https://bananajeonju.netlify.app/images/fixed/1.png",
+      width: 1200,
+      height: 630,
+      alt: "전주시 전북 배관막힘 전문 업체 안내",
+      type: 'image/png',
+    }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "전주시 전북 배관막힘 10곳 견적 비교",
+    description: "전주시 전북 일대 배관막힘 업체 정보",
+    images: [{
+      url: "https://bananajeonju.netlify.app/images/fixed/1.png",
+      alt: "전주시 전북 배관막힘 긴급 출동",
+    }],
+  },
   alternates: {
     canonical: "https://bananajeonju.netlify.app"
   },

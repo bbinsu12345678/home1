@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const regions = require('./data/regions.json');
 const keywords = require('./data/keywords.json');
 
