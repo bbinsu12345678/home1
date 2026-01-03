@@ -152,9 +152,15 @@ export default function BananaTemplate({ region, keyword, lat = 37.5665, lng = 1
                         <span className="bg-banana-yellow text-black text-[10px] px-2 py-0.5 rounded-sm font-bold">24시출동</span>
                     </div>
                     <h1 className="text-xl md:text-2xl font-black text-gray-900 leading-tight">
-                        {h1Text.split(keyword)[0]}
-                        <span className="text-banana-red">{keyword}</span>
-                        {h1Text.split(keyword)[1]}
+                        {h1Text.includes(keyword) ? (
+                            <>
+                                {h1Text.substring(0, h1Text.indexOf(keyword))}
+                                <span className="text-banana-red">{keyword}</span>
+                                {h1Text.substring(h1Text.indexOf(keyword) + keyword.length)}
+                            </>
+                        ) : (
+                            h1Text
+                        )}
                     </h1>
                     <p className="text-xs text-gray-400 mt-2">
                         최적화된 장비와 전문 인력이 상주하여 신속하게 해결해 드립니다.
