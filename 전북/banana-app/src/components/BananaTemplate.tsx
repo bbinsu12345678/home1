@@ -52,23 +52,23 @@ const FaqAccordion = ({ items }: { items: FaqItem[] }) => {
 
 export default function BananaTemplate({ region, keyword, lat = 37.5665, lng = 126.9780, faqs = [], pageId }: BananaTemplateProps) {
     // Generate varied H1 patterns based on pageId for better SEO uniqueness
-    const generateH1 = (region: string, keyword: string, pageId?: string): string => {
+    const getH1Pattern = (): string => {
         if (!pageId) {
-            return `${region} ${keyword} 뚫는곳 10곳 견적 비교`;
+            return `뚫는곳 10곳 견적 비교`;
         }
         const id = parseInt(pageId);
         const patterns = [
-            `${region} ${keyword} 견적 비교는 어떻게 해야 효율적일까요?`,
-            `${region} ${keyword} 가까운 곳 찾기`,
-            `${region} ${keyword} 빠른 출동 업체 TOP 10`,
-            `${region} ${keyword} 지도로 보는 업체 위치`,
-            `${region}에서 찾은 ${keyword} 전문 업체`,
-            `${region} ${keyword} 24시간 긴급 상담`
+            `견적 비교는 어떻게 해야 효율적일까요?`,
+            `가까운 곳 찾기`,
+            `빠른 출동 업체 TOP 10`,
+            `지도로 보는 업체 위치`,
+            `전문 업체`,
+            `24시간 긴급 상담`
         ];
         return patterns[id % 6];
     };
 
-    const h1Text = generateH1(region, keyword, pageId);
+    const h1Pattern = getH1Pattern();
     const allImages = [
         "mosa0Y8lYT.jpeg", "mosa2gPbHX.jpeg", "mosa3D8Gab.6.2.jpeg", "mosa8spaNb.jpeg",
         "mosa9dnYZs.jpeg", "mosaB3IvNk.jpeg", "mosaB3QObb.jpeg", "mosabHYILN.jpeg", "mosadLfcMh.jpeg",
@@ -152,14 +152,10 @@ export default function BananaTemplate({ region, keyword, lat = 37.5665, lng = 1
                         <span className="bg-banana-yellow text-black text-[10px] px-2 py-0.5 rounded-sm font-bold">24시출동</span>
                     </div>
                     <h1 className="text-xl md:text-2xl font-black text-gray-900 leading-tight">
-                        {h1Text.includes(keyword) ? (
-                            <>
-                                {h1Text.substring(0, h1Text.indexOf(keyword))}
-                                <span className="text-banana-red">{keyword}</span>
-                                {h1Text.substring(h1Text.indexOf(keyword) + keyword.length)}
-                            </>
+                        {pageId && parseInt(pageId) % 6 === 4 ? (
+                            <>{region}에서 찾은 <span className="text-banana-red">{keyword}</span> {h1Pattern}</>
                         ) : (
-                            h1Text
+                            <>{region} <span className="text-banana-red">{keyword}</span> {h1Pattern}</>
                         )}
                     </h1>
                     <p className="text-xs text-gray-400 mt-2">
