@@ -81,9 +81,9 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
             "article:published_time": publishedTime,
             "article:modified_time": modifiedTime,
             // 네이버 검색 최적화
-            "naver-site-verification": "네이버 사이트 인증 코드",
+            "naver-site-verification": "738a164c1756d77b0023eaab1092de55036f6a72",
             // 구글 검색 최적화
-            "google-site-verification": "구글 사이트 인증 코드",
+            "google-site-verification": "0PaoOtAndsEpv_9DdbbQuKAsbIkb76XaC15u6mRDp9k",
             // 다음 검색 최적화
             "format-detection": "telephone=no",
         }
