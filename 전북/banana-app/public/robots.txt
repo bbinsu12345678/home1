@@ -4,16 +4,23 @@ Disallow: /api/
 Disallow: /admin/
 Disallow: /_next/
 
-# Google Bot
+# Google Bot (구글 검색엔진 최적화)
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0
 
-# Naver Bot (Yeti)
+# Naver Bot (네이버 검색엔진 최적화 - Yeti)
 User-agent: Yeti
 Allow: /
+Crawl-delay: 0
 
 # Daum Bot
 User-agent: Daumoa
 Allow: /
 
+# Bing Bot
+User-agent: Bingbot
+Allow: /
+
+# 사이트맵 위치 (검색엔진 크롤링 가이드)
 Sitemap: https://bananajeonju.netlify.app/sitemap.xml

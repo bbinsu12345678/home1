@@ -2,6 +2,7 @@ import BananaTemplate from "@/components/BananaTemplate";
 import Pagination from "@/components/Pagination";
 import { getAllPages, getPageById } from "../../utils/pageData";
 import { generateJsonLd, generateSeoDescription, generateSeoTitle } from "../../utils/seo";
+import { getFaqsById } from "../../utils/faq";
 import { Metadata } from "next";
 
 // [id] structure: /1, /2, /3 ...
@@ -79,6 +80,12 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
         other: {
             "article:published_time": publishedTime,
             "article:modified_time": modifiedTime,
+            // 네이버 검색 최적화
+            "naver-site-verification": "네이버 사이트 인증 코드",
+            // 구글 검색 최적화
+            "google-site-verification": "구글 사이트 인증 코드",
+            // 다음 검색 최적화
+            "format-detection": "telephone=no",
         }
     };
 }
@@ -95,8 +102,11 @@ export default async function Page({ params }: { params: Params }) {
     const regionName = `${region.sido} ${region.si} ${region.gugun} ${region.dong}`.replace(/  +/g, ' ').trim();
     const keywordStr = `${keywordPermutation.join("")} ${tail}`;
 
-    // Generate JSON-LD (Article, FAQ, Video)
-    const { articleSchema, faqSchema, videoSchema } = generateJsonLd(regionName, keywordStr, id);
+    // Get 5 deterministic FAQs for this page
+    const faqs = getFaqsById(id);
+
+    // Generate JSON-LD (Article, FAQ, Video, LocalBusiness)
+    const { articleSchema, faqSchema, videoSchema, localBusinessSchema } = generateJsonLd(regionName, keywordStr, id, faqs);
 
     return (
         <>
@@ -112,11 +122,16 @@ export default async function Page({ params }: { params: Params }) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }}
             />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+            />
             <BananaTemplate
                 region={regionName}
                 keyword={keywordStr}
                 lat={region.lat}
                 lng={region.lng}
+                faqs={faqs}
             />
             <Pagination currentPage={parseInt(id)} totalPages={2002} />
         </>
