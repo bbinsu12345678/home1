@@ -102,6 +102,28 @@ export default async function Page({ params }: { params: Params }) {
     // Generate JSON-LD (Article, FAQ, Video, LocalBusiness)
     const { articleSchema, faqSchema, videoSchema, localBusinessSchema } = generateJsonLd(regionName, keywordStr, id, faqs);
 
+    // BreadcrumbList schema for search breadcrumbs
+    const siteUrl = 'https://bananajeonju.netlify.app';
+    const pageUrl = `${siteUrl}/${id}`;
+    const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "홈",
+                "item": siteUrl
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": `${regionName} ${keywordStr}`,
+                "item": pageUrl
+            }
+        ]
+    };
+
     return (
         <>
             <script
@@ -120,12 +142,17 @@ export default async function Page({ params }: { params: Params }) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
             />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
             <BananaTemplate
                 region={regionName}
                 keyword={keywordStr}
                 lat={region.lat}
                 lng={region.lng}
                 faqs={faqs}
+                pageId={id}
             />
             <Pagination currentPage={parseInt(id)} totalPages={2002} />
         </>

@@ -11,6 +11,7 @@ interface BananaTemplateProps {
     lat?: number;
     lng?: number;
     faqs?: FaqData[]; // Optional prop for dynamic FAQs
+    pageId?: string; // Optional page ID for H1 variation
 }
 
 interface FaqItem {
@@ -49,7 +50,25 @@ const FaqAccordion = ({ items }: { items: FaqItem[] }) => {
     );
 };
 
-export default function BananaTemplate({ region, keyword, lat = 37.5665, lng = 126.9780, faqs = [] }: BananaTemplateProps) {
+export default function BananaTemplate({ region, keyword, lat = 37.5665, lng = 126.9780, faqs = [], pageId }: BananaTemplateProps) {
+    // Generate varied H1 patterns based on pageId for better SEO uniqueness
+    const generateH1 = (region: string, keyword: string, pageId?: string): string => {
+        if (!pageId) {
+            return `${region} ${keyword} 뚫는곳 10곳 견적 비교`;
+        }
+        const id = parseInt(pageId);
+        const patterns = [
+            `${region} ${keyword} 견적 비교는 어떻게 해야 효율적일까요?`,
+            `${region} ${keyword} 가까운 곳 찾기`,
+            `${region} ${keyword} 빠른 출동 업체 TOP 10`,
+            `${region} ${keyword} 지도로 보는 업체 위치`,
+            `${region}에서 찾은 ${keyword} 전문 업체`,
+            `${region} ${keyword} 24시간 긴급 상담`
+        ];
+        return patterns[id % 6];
+    };
+
+    const h1Text = generateH1(region, keyword, pageId);
     const allImages = [
         "mosa0Y8lYT.jpeg", "mosa2gPbHX.jpeg", "mosa3D8Gab.6.2.jpeg", "mosa8spaNb.jpeg",
         "mosa9dnYZs.jpeg", "mosaB3IvNk.jpeg", "mosaB3QObb.jpeg", "mosabHYILN.jpeg", "mosadLfcMh.jpeg",
@@ -133,7 +152,9 @@ export default function BananaTemplate({ region, keyword, lat = 37.5665, lng = 1
                         <span className="bg-banana-yellow text-black text-[10px] px-2 py-0.5 rounded-sm font-bold">24시출동</span>
                     </div>
                     <h1 className="text-xl md:text-2xl font-black text-gray-900 leading-tight">
-                        {region} <span className="text-banana-red">{keyword}</span> 뚫는곳 10곳 견적 비교
+                        {h1Text.split(keyword)[0]}
+                        <span className="text-banana-red">{keyword}</span>
+                        {h1Text.split(keyword)[1]}
                     </h1>
                     <p className="text-xs text-gray-400 mt-2">
                         최적화된 장비와 전문 인력이 상주하여 신속하게 해결해 드립니다.

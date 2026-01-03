@@ -52,12 +52,73 @@ export default function Home() {
   const defaultRegion = regions[0];
   const defaultKeyword = keywords.basic[0];
 
+  const siteUrl = 'https://bananajeonju.netlify.app';
+  const regionName = "전주시 전북";
+  const keywordStr = "배관막힘";
+
+  // LocalBusiness Schema for main page
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": `${regionName} ${keywordStr} 전문 업체 안내`,
+    "description": `${regionName} 지역의 ${keywordStr}, 변기막힘, 싱크대막힘, 하수구막힘 전문 업체 정보를 제공합니다. 24시간 긴급 출동 서비스.`,
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "전주시",
+      "addressRegion": "전라북도",
+      "addressCountry": "KR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "35.8049",
+      "longitude": "127.1145"
+    },
+    "url": siteUrl,
+    "telephone": "0507-1234-5678",
+    "openingHours": "Mo-Su 00:00-24:00",
+    "priceRange": "₩₩",
+    "areaServed": {
+      "@type": "City",
+      "name": regionName
+    }
+  };
+
+  // Organization Schema for main page
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "지역업체 안내",
+    "url": siteUrl,
+    "logo": `${siteUrl}/images/brand_logo.png`,
+    "description": "전국 배관막힘, 하수구막힘, 변기막힘 전문 업체 정보 제공",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "0507-1234-5678",
+      "contactType": "customer service",
+      "areaServed": "KR",
+      "availableLanguage": "Korean"
+    },
+    "sameAs": [
+      siteUrl
+    ]
+  };
+
   return (
-    <BananaTemplate
-      region={defaultRegion.full}
-      keyword={defaultKeyword}
-      lat={35.8049} // 전주시청 좌표 근처 (임의 설정)
-      lng={127.1145}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <BananaTemplate
+        region={defaultRegion.full}
+        keyword={defaultKeyword}
+        lat={35.8049} // 전주시청 좌표 근처 (임의 설정)
+        lng={127.1145}
+      />
+    </>
   );
 }
