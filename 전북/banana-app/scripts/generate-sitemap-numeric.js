@@ -24,6 +24,14 @@ const currentDate = new Date().toISOString();
 
 const urls = [];
 
+// Include homepage in sitemap
+urls.push({
+    loc: `${siteUrl}/`,
+    lastmod: currentDate,
+    changefreq: 'daily',
+    priority: '1.0'
+});
+
 // Base keywords (Top 3) same as pageData.ts
 const baseKeywords = keywords.basic.slice(0, 3);
 const perms = generatePermutations(baseKeywords);
