@@ -1,25 +1,66 @@
-﻿User-agent: *
+﻿# 바나나배관 - 전북 전남 광주 배관막힘 전문
+# robots.txt - 2026년 최신 SEO 표준 적용
+
+# 모든 검색엔진 허용
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /404
+
+# Google (Crawl-delay 지원 안함)
+User-agent: Googlebot
 Allow: /
 Disallow: /api/
 Disallow: /admin/
 
-# Googlebot
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 0
+# Google Images
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /*.webp$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
 
-# Naver Yeti
+# Naver
 User-agent: Yeti
 Allow: /
-Crawl-delay: 0
+Disallow: /api/
+Disallow: /admin/
 
 # Daum
 User-agent: Daumoa
 Allow: /
+Disallow: /api/
+Disallow: /admin/
 
 # Bing
 User-agent: Bingbot
 Allow: /
+Disallow: /api/
+Disallow: /admin/
 
-# Sitemap
+# AI Crawlers (2026 트렌드)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Sitemap 위치
 Sitemap: https://bananajeonju.netlify.app/sitemap.xml
+
+# 크롤링 권장사항
+# - 모든 페이지는 모바일 친화적으로 제작됨
+# - 구조화된 데이터 (JSON-LD) 포함
+# - 이미지는 WebP 포맷 권장

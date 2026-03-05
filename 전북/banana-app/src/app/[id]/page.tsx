@@ -1,20 +1,20 @@
 import BananaTemplate from "@/components/BananaTemplate";
 import Pagination from "@/components/Pagination";
 import { getAllPages, getPageById } from "../../utils/pageData";
-import { generateJsonLd, generateSeoDescription, generateSeoTitle } from "../../utils/seo";
-import { getFaqsById } from "../../utils/faq";
+import { generateEnhancedSeo } from "../../utils/seoGenerator";
+import NaverSeoResults from "@/components/NaverSeoResults";
 import { Metadata } from "next";
 
 // [id] structure: /1, /2, /3 ...
 
 export async function generateStaticParams() {
-    const pages = getAllPages();
-    return pages.map((page) => ({
-        id: page.id,
-    }));
+    // ISR 최적화: 정적 빌드 시 17,000개 페이지 생성을 스킵하고, 
+    // 방문자가 접속할 때 실시간 생성 후 엣지 서버에 캐싱(ISR)
+    return [];
 }
 
-export const dynamicParams = false;
+export const dynamicParams = true;
+export const revalidate = 86400; // ISR: 24시간 캐싱
 
 type Params = Promise<{ id: string }>;
 
@@ -26,12 +26,9 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
 
     const { region, keywordPermutation, tail } = pageData;
     const regionPart = `${region.sido} ${region.si} ${region.gugun} ${region.dong}`.replace(/  +/g, ' ').trim();
-    const keywordPart = `${keywordPermutation.join("")} ${tail}`; // Fixed: use keywordPermutation and tail directly
+    const keywordPart = `${keywordPermutation.join("")} ${tail}`;
 
-    // 6가지 Title 패턴 사용
-    const title = generateSeoTitle(regionPart, keywordPart, id);
-
-    const description = generateSeoDescription(regionPart, keywordPart);
+    const { title, description, keywords } = generateEnhancedSeo(regionPart, keywordPart, id);
     const siteUrl = 'https://bananajeonju.netlify.app';
     const pageUrl = `${siteUrl}/${id}`;
 
@@ -42,7 +39,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     return {
         title: title,
         description: description,
-        keywords: [regionPart, "욕실 막힘", "하수구막힘", "변기막힘", "싱크대막힘", "배관청소", "수도설비", "24시간 출동", keywordPart],
+        keywords: keywords,
         openGraph: {
             title: title,
             description: description,
@@ -96,11 +93,26 @@ export default async function Page({ params }: { params: Params }) {
     const regionName = `${region.sido} ${region.si} ${region.gugun} ${region.dong}`.replace(/  +/g, ' ').trim();
     const keywordStr = `${keywordPermutation.join("")} ${tail}`;
 
-    // Get 5 deterministic FAQs for this page
-    const faqs = getFaqsById(id);
+    // 새로운 네이버 SEO 엔진 로드 (FAQ 포함)
+    const { jsonLd, faqs } = generateEnhancedSeo(regionName, keywordStr, id);
 
-    // Generate JSON-LD (Article, FAQ, Video, LocalBusiness)
-    const { articleSchema, faqSchema, videoSchema, localBusinessSchema } = generateJsonLd(regionName, keywordStr, id, faqs);
+    // 결정론적 이미지 생성 (하이드레이션 오류 방지)
+    const allImages = [
+        "mosa0Y8lYT.jpeg", "mosa2gPbHX.jpeg", "mosa3D8Gab.6.2.jpeg", "mosa8spaNb.jpeg",
+        "mosa9dnYZs.jpeg", "mosaB3IvNk.jpeg", "mosaB3QObb.jpeg", "mosabHYILN.jpeg", "mosadLfcMh.jpeg",
+        "mosafCgw5S.jpeg", "mosafJz54o (1).jpeg", "mosafJz54o.jpeg", "mosafL01FA.jpeg", "mosagIETul.jpeg",
+        "mosaJpDpZb.jpeg", "mosaKPQYdr.jpeg", "mosakVv0h6.jpeg", "mosalUquvU.jpeg", "mosaM7CH6v.jpeg",
+        "mosalUquvU.jpeg", "mosaM7CH6v.jpeg",
+        "mosamq09Ao.jpeg", "mosaObRZud.jpeg", "mosaOjUE3R.jpeg", "mosaq4e7id.4.24.jpeg", "mosaTJFa9v.jpeg",
+        "mosaTs7udR.jpeg", "mosauARsUn.jpeg", "mosaVSOo76.jpeg", "mosaxhVHYI.jpeg", "mosaY4eUs8.jpeg",
+        "mosaym1mh0 (1).jpeg", "mosayO3qdw.jpeg", "mosaZtCFWi.jpeg"
+    ];
+
+    // 페이지 ID를 기반으로 이미지 선택 (결정론적)
+    const idNum = parseInt(id) || 0;
+    const galleryImages = Array.from({ length: 7 }, (_, i) =>
+        allImages[(idNum + i) % allImages.length]
+    );
 
     // BreadcrumbList schema for search breadcrumbs
     const siteUrl = 'https://bananajeonju.netlify.app';
@@ -126,22 +138,7 @@ export default async function Page({ params }: { params: Params }) {
 
     return (
         <>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }}
-            />
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
-            />
+            <NaverSeoResults jsonLd={jsonLd} />
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
@@ -153,8 +150,9 @@ export default async function Page({ params }: { params: Params }) {
                 lng={region.lng}
                 faqs={faqs}
                 pageId={id}
+                galleryImages={galleryImages}
             />
-            <Pagination currentPage={parseInt(id)} totalPages={2002} />
+            <Pagination currentPage={parseInt(id)} />
         </>
     );
 }
