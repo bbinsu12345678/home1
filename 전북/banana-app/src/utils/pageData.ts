@@ -60,3 +60,12 @@ export const getPageById = (id: string): PageData | undefined => {
     const pages = getAllPages();
     return pages.find(p => p.id === id);
 };
+
+export const getAllUniqueSi = (): string[] => {
+    const siSet = new Set<string>();
+    regions.forEach(r => {
+        if (r.si) siSet.add(r.si);
+    });
+    return Array.from(siSet);
+};
+

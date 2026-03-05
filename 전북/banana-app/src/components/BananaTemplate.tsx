@@ -12,6 +12,7 @@ interface BananaTemplateProps {
     lng?: number;
     faqs?: FaqData[]; // Optional prop for dynamic FAQs
     pageId?: string; // Optional page ID for H1 variation
+    galleryImages?: string[]; // Optional prop for gallery images (to prevent hydration mismatch)
 }
 
 interface FaqItem {
@@ -50,7 +51,7 @@ const FaqAccordion = ({ items }: { items: FaqItem[] }) => {
     );
 };
 
-export default function BananaTemplate({ region, keyword, lat = 37.5665, lng = 126.9780, faqs = [], pageId }: BananaTemplateProps) {
+export default function BananaTemplate({ region, keyword, lat = 37.5665, lng = 126.9780, faqs = [], pageId, galleryImages = [] }: BananaTemplateProps) {
     // Generate varied H1 patterns based on pageId for better SEO uniqueness
     const getH1Pattern = (): string => {
         if (!pageId) {
@@ -69,19 +70,6 @@ export default function BananaTemplate({ region, keyword, lat = 37.5665, lng = 1
     };
 
     const h1Pattern = getH1Pattern();
-    const allImages = [
-        "mosa0Y8lYT.jpeg", "mosa2gPbHX.jpeg", "mosa3D8Gab.6.2.jpeg", "mosa8spaNb.jpeg",
-        "mosa9dnYZs.jpeg", "mosaB3IvNk.jpeg", "mosaB3QObb.jpeg", "mosabHYILN.jpeg", "mosadLfcMh.jpeg",
-        "mosafCgw5S.jpeg", "mosafJz54o (1).jpeg", "mosafJz54o.jpeg", "mosafL01FA.jpeg", "mosagIETul.jpeg",
-        "mosaJpDpZb.jpeg", "mosaKPQYdr.jpeg", "mosakVv0h6.jpeg", "mosalUquvU.jpeg", "mosaM7CH6v.jpeg",
-        "mosamq09Ao.jpeg", "mosaObRZud.jpeg", "mosaOjUE3R.jpeg", "mosaq4e7id.4.24.jpeg", "mosaTJFa9v.jpeg",
-        "mosaTs7udR.jpeg", "mosauARsUn.jpeg", "mosaVSOo76.jpeg", "mosaxhVHYI.jpeg", "mosaY4eUs8.jpeg",
-        "mosaym1mh0 (1).jpeg", "mosayO3qdw.jpeg", "mosaZtCFWi.jpeg"
-    ];
-
-    const [galleryImages] = useState<string[]>(() =>
-        [...allImages].sort(() => 0.5 - Math.random()).slice(0, 7)
-    );
 
     const businesses = useMemo(() =>
         generateBusinessList(region, lat, lng, keyword),

@@ -5,12 +5,12 @@ import { usePathname } from 'next/navigation';
 
 interface PaginationProps {
     currentPage: number;
-    totalPages: number;
 }
 
-export default function Pagination({ currentPage, totalPages }: PaginationProps) {
+export default function Pagination({ currentPage }: PaginationProps) {
     // 10 pages per group
     const pagesPerGroup = 10;
+    const totalPages = 4860; // Up from 2002 after adding 23 Gwangju regions
     const currentGroup = Math.ceil(currentPage / pagesPerGroup);
 
     const startPage = (currentGroup - 1) * pagesPerGroup + 1;
@@ -29,7 +29,7 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
             {/* Previous Group Button */}
             {startPage > 1 && (
                 <Link
-                    href={`/${prevGroupStart}`}
+                    href={`/${prevGroupStart}/`}
                     className="px-3 py-2 border rounded hover:bg-gray-100 text-sm"
                 >
                     이전 10페이지
@@ -40,10 +40,10 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
             {pages.map((page) => (
                 <Link
                     key={page}
-                    href={`/${page}`}
+                    href={`/${page}/`}
                     className={`px-3 py-2 border rounded text-sm ${page === currentPage
-                            ? 'bg-red-600 text-white font-bold border-red-600'
-                            : 'hover:bg-gray-100'
+                        ? 'bg-red-600 text-white font-bold border-red-600'
+                        : 'hover:bg-gray-100'
                         }`}
                 >
                     {page}
@@ -53,7 +53,7 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
             {/* Next Group Button */}
             {endPage < totalPages && (
                 <Link
-                    href={`/${nextGroupStart}`}
+                    href={`/${nextGroupStart}/`}
                     className="px-3 py-2 border rounded hover:bg-gray-100 text-sm"
                 >
                     다음 10페이지
