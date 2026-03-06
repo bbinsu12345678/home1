@@ -66,7 +66,7 @@ export const generateUltraEnhancedSeo = (
     const suffix = titleSuffixes[(idNum * 7) % titleSuffixes.length];
 
     // 문서 고유 식별 번호를 메타데이터에 포함하여 Naver 봇의 중복 문서 판정을 100% 회피 (Deterministic ID)
-    const title = `${prefix} | ${region} ${keyword} | ${suffix} (No.${idNum})`;
+    const title = `${prefix} | ${region} ${keyword} | ${suffix} (No.${idNum}) - 바나나배관`;
     const description = `${descPart1[idNum % descPart1.length]} ${descPart2[(idNum * 3) % descPart2.length]} ${descPart3[(idNum * 5) % descPart3.length]} [할인코드: BNN-${idNum}]`;
 
     // 3. FAQ 대폭 확장 (15개 풀세트)
