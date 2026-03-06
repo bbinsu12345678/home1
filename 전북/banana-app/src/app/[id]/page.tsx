@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
             title: title,
             description: description,
             url: pageUrl,
-            siteName: "지역업체 안내",
+            siteName: "바나나배관",
             type: "website",
             locale: "ko_KR",
             images: [{

@@ -7,7 +7,7 @@ export const SITE_ID = Number(process.env.NEXT_PUBLIC_SITE_ID || "1");
 
 // 사이트별 고유 테마 설정
 export const SITE_THEMES = {
-    1: { name: "바나나배관올케어", theme: "PRICE", primary: "#FFD700" },
+    1: { name: "바나나배관", theme: "PRICE", primary: "#FFD700" },
     2: { name: "전북배관수도설비", theme: "SOLUTION", primary: "#1E90FF" },
     3: { name: "정직한배관공", theme: "REVIEW", primary: "#32CD32" },
     4: { name: "24시긴급배관", theme: "EMERGENCY", primary: "#FF4500" },

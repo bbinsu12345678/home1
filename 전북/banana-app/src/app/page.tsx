@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description,
       url: "https://bananajeonju.netlify.app",
-      siteName: "바나나배관 - 전북 전남 광주 배관막힘 전문",
+      siteName: "바나나배관",
       type: "website",
       locale: "ko_KR",
       images: [{
