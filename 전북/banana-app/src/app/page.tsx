@@ -49,7 +49,6 @@ export async function generateMetadata(): Promise<Metadata> {
       "max-video-preview": -1
     },
     other: {
-      "naver-site-verification": "2c62c37367623970724807466ebf77a83445582e", // 네이버 서치어드바이저 인증
       "google-site-verification": "YOUR_GOOGLE_VERIFICATION_CODE", // 구글 서치콘솔 인증 (실제 코드로 교체 필요)
       "article:published_time": "2025-12-11T15:23:54+01:00",
       "article:modified_time": new Date().toISOString(),

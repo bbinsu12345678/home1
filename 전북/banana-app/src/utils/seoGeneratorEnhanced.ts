@@ -19,7 +19,7 @@ export const generateUltraEnhancedSeo = (
 ): SeoData => {
     const idNum = parseInt(pageId.replace(/[^0-9]/g, '') || '0');
     const now = new Date().toISOString();
-    const siteUrl = 'https://bananajeonju.netlify.app';
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bananajeonju.netlify.app';
 
     // 지역 특성 파악 (도시 규모에 따른 맞춤형 콘텐츠)
     const isMajorCity = region.includes('전주') || region.includes('익산') || region.includes('군산') ||
