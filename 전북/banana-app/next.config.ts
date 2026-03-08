@@ -1,7 +1,7 @@
-import type { NextConfig } from "next";
+﻿import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-    // output: 'export', // Static Export 설정 (ISR 사용 시 주석 처리 필요)ensure deployment success
+    output: 'export',
     images: {
         unoptimized: true, // Required for static export
     },
@@ -12,3 +12,4 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
