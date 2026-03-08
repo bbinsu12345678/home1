@@ -52,7 +52,7 @@ export const generateNaverSeo = (
             name: `${region} ${keyword} 전문 안내`,
             description,
             url: pageUrl,
-            telephone: '010-0000-0000',
+            telephone: '010-2115-3496',
             image: imageUrl,
             address: {
                 '@type': 'PostalAddress',

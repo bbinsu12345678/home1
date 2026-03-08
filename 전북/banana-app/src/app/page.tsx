@@ -8,7 +8,7 @@ const MAIN_KEYWORD = "배관막힘";
 const FAQ_SOURCE_ID = "1";
 
 const homeTitle = `${MAIN_REGION} ${MAIN_KEYWORD} 24시간 상담 안내`;
-const homeDescription = `${MAIN_REGION} 지역의 배관막힘, 하수구막힘, 변기막힘, 싱크대막힘 상담 정보를 정리한 메인 페이지입니다.`;
+const homeDescription = `${MAIN_REGION} 지역의 배관막힘, 하수구막힘, 변기막힘, 싱크대막힘, 에어컨배관청소, 정화조막힘 전문 상담 정보를 정리한 메인 페이지입니다.`;
 const homeKeywords = [
     "전북 배관막힘",
     "전남 배관막힘",
@@ -16,6 +16,11 @@ const homeKeywords = [
     "하수구막힘",
     "변기막힘",
     "싱크대막힘",
+    "에어컨배관막힘",
+    "에어컨배관청소",
+    "정화조막힘",
+    "정화조청소",
+    "정화조뚫기",
 ];
 
 export const metadata: Metadata = {
@@ -71,7 +76,7 @@ export default function Home() {
         description: homeDescription,
         url: `${SITE_URL}/`,
         areaServed: MAIN_REGION,
-        telephone: "010-0000-0000",
+        telephone: "010-2115-3496",
         image: `${SITE_URL}/images/fixed/1.png`,
     };
 

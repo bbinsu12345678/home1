@@ -20,20 +20,29 @@ function generatePermutations(arr) {
 }
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bananajeonju.netlify.app';
-const currentDate = new Date().toISOString();
+const now = new Date();
+const currentDate = now.toISOString();
 const reservedPageIds = new Set([404, 500]);
+
+// lastmod 차등화: 페이지 ID 기반으로 최근 7일 내 분산
+function generateLastmod(pageId) {
+    const seed = (pageId * 2654435761) >>> 0;
+    const daysAgo = seed % 7;
+    const hoursAgo = seed % 24;
+    const date = new Date(now);
+    date.setDate(date.getDate() - daysAgo);
+    date.setHours(date.getHours() - hoursAgo);
+    return date.toISOString();
+}
 
 const urls = [];
 
-// Include homepage in sitemap
-urls.push({
-    loc: `${siteUrl}/`,
-    lastmod: currentDate,
-    changefreq: 'daily',
-    priority: '1.0'
-});
+// 정적 페이지
+urls.push({ loc: `${siteUrl}/`, lastmod: currentDate, changefreq: 'daily', priority: '1.0' });
+urls.push({ loc: `${siteUrl}/about/`, lastmod: currentDate, changefreq: 'monthly', priority: '0.7' });
+urls.push({ loc: `${siteUrl}/gallery/`, lastmod: currentDate, changefreq: 'weekly', priority: '0.8' });
 
-// Base keywords (Top 3) same as pageData.ts
+// 동적 페이지 (지역 x 키워드 조합)
 const baseKeywords = keywords.basic.slice(0, 3);
 const perms = generatePermutations(baseKeywords);
 const tails = keywords.tail && keywords.tail.length > 0 ? keywords.tail : ["10곳 비교"];
@@ -46,20 +55,18 @@ for (const region of regions) {
             while (reservedPageIds.has(idCounter)) {
                 idCounter++;
             }
-
-            // ID based URL
             urls.push({
                 loc: `${siteUrl}/${idCounter}/`,
-                lastmod: currentDate,
-                changefreq: 'daily',
-                priority: '0.8'
+                lastmod: generateLastmod(idCounter),
+                changefreq: 'weekly',
+                priority: '0.6'
             });
             idCounter++;
         }
     }
 }
 
-// XML Structure
+// 단일 sitemap.xml 생성
 let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
 xml += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
 
@@ -74,17 +81,15 @@ for (const url of urls) {
 
 xml += '</urlset>';
 
-// Output paths
+// 출력
 const publicDir = path.join(__dirname, '..', 'public');
 const outDir = path.join(__dirname, '..', 'out');
 
-// Write to public
 if (!fs.existsSync(publicDir)) fs.mkdirSync(publicDir);
 fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), xml);
-console.log(`✅ Generated public/sitemap.xml with ${urls.length} URLs`);
+console.log(`✅ public/sitemap.xml: ${urls.length}개 URL 생성`);
 
-// Write to out (if exists)
 if (fs.existsSync(outDir)) {
     fs.writeFileSync(path.join(outDir, 'sitemap.xml'), xml);
-    console.log(`✅ Generated out/sitemap.xml`);
+    console.log(`✅ out/sitemap.xml 복사 완료`);
 }
