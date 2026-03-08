@@ -158,7 +158,14 @@ export default function Home() {
                     itemOffered: {
                         "@type": "Service",
                         name: "변기막힘 해결",
-                        description: "가정용·상업용 변기 막힘 진단 및 고압세척, 내시경 점검",
+                        description: "가정용·상업용 변기 막힘 진단 및 고압세척, 내시경 점검. 현장 상황에 따라 추가 비용이 발생할 수 있습니다.",
+                    },
+                    priceSpecification: {
+                        "@type": "PriceSpecification",
+                        priceCurrency: "KRW",
+                        minPrice: "50000",
+                        maxPrice: "300000",
+                        description: "단순 막힘 5만원~, 배관 해체·교체 시 10~30만원 (현장 상황에 따라 추가 비용 발생 가능)",
                     },
                 },
                 {
@@ -166,7 +173,14 @@ export default function Home() {
                     itemOffered: {
                         "@type": "Service",
                         name: "하수구막힘 해결",
-                        description: "주방·욕실·외부 하수구 막힘 고압세척 및 배관 청소",
+                        description: "주방·욕실·외부 하수구 막힘 고압세척 및 배관 청소. 현장 상황에 따라 추가 비용이 발생할 수 있습니다.",
+                    },
+                    priceSpecification: {
+                        "@type": "PriceSpecification",
+                        priceCurrency: "KRW",
+                        minPrice: "50000",
+                        maxPrice: "350000",
+                        description: "단순 막힘 5만원~, 고압세척 시 15~35만원 (현장 상황에 따라 추가 비용 발생 가능)",
                     },
                 },
                 {
@@ -174,7 +188,14 @@ export default function Home() {
                     itemOffered: {
                         "@type": "Service",
                         name: "싱크대막힘 해결",
-                        description: "싱크대 배수관 막힘, 기름때 제거, 배관 교체",
+                        description: "싱크대 배수관 막힘, 기름때 제거, 배관 교체. 현장 상황에 따라 추가 비용이 발생할 수 있습니다.",
+                    },
+                    priceSpecification: {
+                        "@type": "PriceSpecification",
+                        priceCurrency: "KRW",
+                        minPrice: "50000",
+                        maxPrice: "250000",
+                        description: "단순 막힘 5만원~, 배관 교체 시 10~25만원 (현장 상황에 따라 추가 비용 발생 가능)",
                     },
                 },
                 {
@@ -182,7 +203,14 @@ export default function Home() {
                     itemOffered: {
                         "@type": "Service",
                         name: "에어컨배관 청소",
-                        description: "에어컨 드레인 배관 막힘 해결, 곰팡이·슬라임 제거",
+                        description: "에어컨 드레인 배관 막힘 해결, 곰팡이·슬라임 제거. 현장 상황에 따라 추가 비용이 발생할 수 있습니다.",
+                    },
+                    priceSpecification: {
+                        "@type": "PriceSpecification",
+                        priceCurrency: "KRW",
+                        minPrice: "60000",
+                        maxPrice: "200000",
+                        description: "드레인 배관 뚫기 6만원~, 고압세척 포함 시 12~20만원 (현장 상황에 따라 추가 비용 발생 가능)",
                     },
                 },
                 {
@@ -190,7 +218,14 @@ export default function Home() {
                     itemOffered: {
                         "@type": "Service",
                         name: "정화조막힘 해결",
-                        description: "정화조 막힘, 오수 역류, 정화조 청소 및 배관 세척",
+                        description: "정화조 막힘, 오수 역류, 정화조 청소 및 배관 세척. 현장 상황에 따라 추가 비용이 발생할 수 있습니다.",
+                    },
+                    priceSpecification: {
+                        "@type": "PriceSpecification",
+                        priceCurrency: "KRW",
+                        minPrice: "150000",
+                        maxPrice: "500000",
+                        description: "정화조 뚫기 15만원~, 청소+세척 시 30~50만원 (현장 상황에 따라 추가 비용 발생 가능)",
                     },
                 },
                 {
@@ -198,7 +233,14 @@ export default function Home() {
                     itemOffered: {
                         "@type": "Service",
                         name: "배관 고압세척",
-                        description: "전문 고압세척 장비로 배관 내벽 기름때·석회질 완전 제거",
+                        description: "전문 고압세척 장비로 배관 내벽 기름때·석회질 완전 제거. 현장 상황에 따라 추가 비용이 발생할 수 있습니다.",
+                    },
+                    priceSpecification: {
+                        "@type": "PriceSpecification",
+                        priceCurrency: "KRW",
+                        minPrice: "150000",
+                        maxPrice: "500000",
+                        description: "배관 길이·구조에 따라 15~50만원 (현장 상황에 따라 추가 비용 발생 가능)",
                     },
                 },
                 {
@@ -206,7 +248,14 @@ export default function Home() {
                     itemOffered: {
                         "@type": "Service",
                         name: "배관 내시경 점검",
-                        description: "초고화질 카메라로 배관 내부 상태 정밀 진단",
+                        description: "초고화질 카메라로 배관 내부 상태 정밀 진단. 현장 상황에 따라 추가 비용이 발생할 수 있습니다.",
+                    },
+                    priceSpecification: {
+                        "@type": "PriceSpecification",
+                        priceCurrency: "KRW",
+                        minPrice: "50000",
+                        maxPrice: "150000",
+                        description: "내시경 점검 5만원~, 배관 길이에 따라 변동 (현장 상황에 따라 추가 비용 발생 가능)",
                     },
                 },
             ],

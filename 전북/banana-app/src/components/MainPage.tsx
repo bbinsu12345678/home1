@@ -225,6 +225,46 @@ export default function MainPage({ faqs }: MainPageProps) {
                 </div>
             </section>
 
+            {/* 5-1. 서비스 가격 안내 */}
+            <section className="py-16 bg-gray-50">
+                <div className="w-full max-w-2xl mx-auto px-4">
+                    <div className="text-center mb-10">
+                        <span className="inline-block text-banana-red font-semibold text-sm tracking-wide mb-3">
+                            비용 안내
+                        </span>
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                            서비스별 <span className="text-banana-yellow">예상 비용</span>
+                        </h2>
+                    </div>
+
+                    <div className="space-y-3">
+                        {[
+                            { service: "변기막힘 해결", price: "5만원 ~", detail: "단순 막힘 기준 / 배관 해체·교체 시 10~30만원" },
+                            { service: "하수구막힘 해결", price: "5만원 ~", detail: "단순 막힘 기준 / 고압세척 시 15~35만원" },
+                            { service: "싱크대막힘 해결", price: "5만원 ~", detail: "단순 막힘 기준 / 배관 교체 시 10~25만원" },
+                            { service: "에어컨배관 청소", price: "6만원 ~", detail: "드레인 배관 뚫기 기준 / 고압세척 포함 시 12~20만원" },
+                            { service: "정화조막힘 해결", price: "15만원 ~", detail: "정화조 뚫기 기준 / 청소+세척 시 30~50만원" },
+                            { service: "배관 고압세척", price: "15만원 ~", detail: "배관 길이·구조에 따라 15~50만원" },
+                            { service: "배관 내시경 점검", price: "5만원 ~", detail: "배관 길이에 따라 변동" },
+                        ].map((item, idx) => (
+                            <div key={idx} className="flex items-center justify-between bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:border-banana-yellow transition-colors">
+                                <div>
+                                    <h3 className="font-bold text-gray-900">{item.service}</h3>
+                                    <p className="text-xs text-gray-400 mt-1">{item.detail}</p>
+                                </div>
+                                <span className="text-banana-red font-extrabold text-lg whitespace-nowrap ml-4">{item.price}</span>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="mt-6 bg-amber-50 border border-amber-200 rounded-xl p-4">
+                        <p className="text-sm text-amber-800 leading-relaxed">
+                            <strong>* 안내사항:</strong> 위 금액은 일반적인 참고 가격이며, 현장 상황(막힘 정도, 배관 상태, 작업 난이도, 야간·공휴일 등)에 따라 <strong>추가 비용이 발생할 수 있습니다.</strong> 정확한 비용은 현장 방문 후 견적을 먼저 안내드리며, 고객님의 동의 없이 작업을 진행하지 않습니다.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
             {/* 6. 선택 이유 */}
             <section className="py-16 bg-white">
                 <div className="w-full max-w-2xl mx-auto px-4">
