@@ -23,11 +23,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'ko_KR',
-    siteName: '바나나배관',
-    title: '바나나배관 - 전북 전남 광주 배관막힘 긴급출동',
-    description: '바나나배관 전북 전남 광주 일대 배관막힘 업체 정보를 한눈에 확인하세요',
+    siteName: '지역업체 안내',
+    title: '전주시 전북 배관막힘 긴급출동',
+    description: '전주시 전북 일대 배관막힘 업체 정보를 한눈에 확인하세요',
     images: [{
-      url: 'https://bananajeonju.netlify.app/images/fixed/1.png',
+      url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://bananajeonju.netlify.app'}/images/fixed/1.png`,
       width: 1200,
       height: 630,
       alt: '전주시 전북 배관막힘 전문 업체',
@@ -47,12 +47,9 @@ export const metadata: Metadata = {
   verification: {
     google: '0PaoOtAndsEpv_9DdbbQuKAsbIkb76XaC15u6mRDp9k',
     other: {
-      'naver-site-verification': '2c62c37367623970724807466ebf77a83445582e',
+      'naver-site-verification': '738a164c1756d77b0023eaab1092de55036f6a72',
     },
   },
-  alternates: {
-    canonical: 'https://bananajeonju.netlify.app'
-  }
 };
 
 export default function RootLayout({

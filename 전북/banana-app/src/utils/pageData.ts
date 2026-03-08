@@ -12,6 +12,7 @@ export interface PageData {
 
 // Global cache for page data
 let allPagesCache: PageData[] | null = null;
+const RESERVED_PAGE_IDS = new Set([404, 500]);
 
 export const getAllPages = (): PageData[] => {
     if (allPagesCache) return allPagesCache;
@@ -29,6 +30,10 @@ export const getAllPages = (): PageData[] => {
     for (const region of regions) {
         for (const perm of perms) {
             for (const tail of tails) {
+                while (RESERVED_PAGE_IDS.has(idCounter)) {
+                    idCounter++;
+                }
+
                 const keywordStr = `${perm.join("")} ${tail}`;
 
                 // original slug components
@@ -59,6 +64,12 @@ export const getAllPages = (): PageData[] => {
 export const getPageById = (id: string): PageData | undefined => {
     const pages = getAllPages();
     return pages.find(p => p.id === id);
+};
+
+export const getAllPageIds = (): number[] => {
+    return getAllPages()
+        .map((page) => Number(page.id))
+        .filter((pageId) => Number.isInteger(pageId) && pageId > 0);
 };
 
 export const getAllUniqueSi = (): string[] => {
