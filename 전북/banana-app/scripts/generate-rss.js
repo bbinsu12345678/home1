@@ -89,6 +89,31 @@ for (const region of regions) {
     dynamicCount++;
 }
 
+// 그룹2: 에어컨배관/정화조 단독 키워드 (지역별 1개씩)
+const soloKeywords = ['에어컨배관막힘', '정화조막힘'];
+const soloStartId = 1 + regions.length * perms.length * tails.length;
+let soloId = soloStartId;
+
+for (const soloKw of soloKeywords) {
+    if (dynamicCount >= RSS_ITEM_LIMIT + 10) break;
+    // 대표 5개 지역만 RSS에 포함
+    const sampleRegions = regions.filter((_, i) => i % Math.ceil(regions.length / 5) === 0).slice(0, 5);
+    for (const region of sampleRegions) {
+        while (reservedPageIds.has(soloId)) soloId++;
+        const regionName = [region.sido, region.si, region.gugun, region.dong].filter(Boolean).join(' ');
+        const itemDate = new Date(now);
+        itemDate.setDate(itemDate.getDate() - (dynamicCount % 7));
+        items.push({
+            title: `${regionName} ${soloKw} 해결 가이드`,
+            link: `${siteUrl}/${soloId}/`,
+            description: `${regionName} 지역 ${soloKw} 문제를 전문 장비로 점검하고 해결합니다.`,
+            pubDate: itemDate.toUTCString(),
+        });
+        soloId += tails.length;
+        dynamicCount++;
+    }
+}
+
 // RSS 2.0 XML 생성
 let rss = '<?xml version="1.0" encoding="UTF-8"?>\n';
 rss += '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">\n';

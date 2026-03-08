@@ -49,8 +49,29 @@ const tails = keywords.tail && keywords.tail.length > 0 ? keywords.tail : ["10�
 
 let idCounter = 1;
 
+// 그룹1: 기존 3키워드 순열 조합
 for (const region of regions) {
     for (const perm of perms) {
+        for (const tail of tails) {
+            while (reservedPageIds.has(idCounter)) {
+                idCounter++;
+            }
+            urls.push({
+                loc: `${siteUrl}/${idCounter}/`,
+                lastmod: generateLastmod(idCounter),
+                changefreq: 'weekly',
+                priority: '0.6'
+            });
+            idCounter++;
+        }
+    }
+}
+
+// 그룹2: 에어컨배관막힘 / 정화조막힘 단독 키워드
+const soloKeywords = ["에어컨배관막힘", "정화조막힘"];
+
+for (const region of regions) {
+    for (const soloKw of soloKeywords) {
         for (const tail of tails) {
             while (reservedPageIds.has(idCounter)) {
                 idCounter++;
