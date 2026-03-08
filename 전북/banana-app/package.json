@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && node scripts/generate-sitemap-numeric.js",
+    "build": "next build && node scripts/generate-sitemap-numeric.js && node scripts/generate-rss.js",
     "generate:sitemap": "node scripts/generate-sitemap-numeric.js",
     "postbuild": "echo 'Postbuild skipped'",
     "start": "next start",

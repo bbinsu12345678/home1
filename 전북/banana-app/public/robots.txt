@@ -60,6 +60,9 @@ Allow: /
 # Sitemap 위치
 Sitemap: https://bananajeonju.netlify.app/sitemap.xml
 
+# RSS 피드
+# https://bananajeonju.netlify.app/rss.xml
+
 # 크롤링 권장사항
 # - 모든 페이지는 모바일 친화적으로 제작됨
 # - 구조화된 데이터 (JSON-LD) 포함
