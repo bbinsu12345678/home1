@@ -30,7 +30,7 @@ export default function NotFound() {
             홈으로 돌아가기
           </Link>
           <a
-            href="tel:010-8184-3496"
+            href="tel:010-2115-3496"
             className="bg-banana-yellow text-black px-6 py-3 rounded-lg font-bold hover:bg-yellow-500 transition"
           >
             긴급 상담 전화

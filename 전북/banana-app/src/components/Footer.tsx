@@ -51,7 +51,7 @@ const Footer = () => {
                     <h3 className="text-white font-bold text-lg mb-4">바나나배관 올케어</h3>
                     <p>대표: 오다희 | 사업자등록번호: 139-04-76709</p>
                     <p>주소: 전주시 덕진구 쪽구름로 42</p>
-                    <p>고객센터: 010-8184-3496 (24시간 연중무휴)</p>
+                    <p>고객센터: 010-2115-3496 (24시간 연중무휴)</p>
                     <p className="mt-4 text-xs text-gray-600">Copyright © BANANA PIPING. All rights reserved.</p>
                 </div>
             </div>

@@ -26,7 +26,7 @@ const Header = () => {
                 </Link>
 
                 {/* Right CTA */}
-                <a href="tel:010-8184-3496" className="flex items-center gap-2 bg-banana-red text-white px-4 py-2 rounded-lg font-bold hover:bg-red-700 transition animate-pulse">
+                <a href="tel:010-2115-3496" className="flex items-center gap-2 bg-banana-red text-white px-4 py-2 rounded-lg font-bold hover:bg-red-700 transition animate-pulse">
                     <PhoneIcon className="h-5 w-5" />
                     <span>긴급출동</span>
                 </a>
