@@ -1,71 +1,99 @@
 import MainPage from "../components/MainPage";
-import { Metadata } from "next";
-import { generateEnhancedSeo } from "../utils/seoGenerator";
+import type { Metadata } from "next";
+import { generateNaverSeo } from "../utils/seoGenerator";
+import { SITE_NAME, SITE_URL } from "../utils/siteConfig";
 
-// 메인 페이지용 대표 키워드 및 지역 설정
 const MAIN_REGION = "전북 전남 광주";
 const MAIN_KEYWORD = "배관막힘";
-const PAGE_ID = "main";
+const FAQ_SOURCE_ID = "1";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const { title, description, keywords } = generateEnhancedSeo(MAIN_REGION, MAIN_KEYWORD, PAGE_ID);
+const homeTitle = `${MAIN_REGION} ${MAIN_KEYWORD} 24시간 상담 안내`;
+const homeDescription = `${MAIN_REGION} 지역의 배관막힘, 하수구막힘, 변기막힘, 싱크대막힘 상담 정보를 정리한 메인 페이지입니다.`;
+const homeKeywords = [
+    "전북 배관막힘",
+    "전남 배관막힘",
+    "광주 배관막힘",
+    "하수구막힘",
+    "변기막힘",
+    "싱크대막힘",
+];
 
-  return {
-    title,
-    description,
-    keywords,
+export const metadata: Metadata = {
+    title: homeTitle,
+    description: homeDescription,
+    keywords: homeKeywords,
     openGraph: {
-      title,
-      description,
-      url: "https://bananajeonju.netlify.app",
-      siteName: "바나나배관",
-      type: "website",
-      locale: "ko_KR",
-      images: [{
-        url: "https://bananajeonju.netlify.app/images/fixed/1.webp",
-        width: 1200,
-        height: 630,
-        alt: `${MAIN_REGION} ${MAIN_KEYWORD} 전문 업체 안내`,
-        type: 'image/webp',
-      }],
+        title: homeTitle,
+        description: homeDescription,
+        url: `${SITE_URL}/`,
+        siteName: SITE_NAME,
+        type: "website",
+        locale: "ko_KR",
+        images: [
+            {
+                url: `${SITE_URL}/images/fixed/1.png`,
+                width: 1200,
+                height: 630,
+                alt: `${MAIN_REGION} ${MAIN_KEYWORD}`,
+                type: "image/png",
+            },
+        ],
     },
     twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [{
-        url: "https://bananajeonju.netlify.app/images/fixed/1.webp",
-        alt: `${MAIN_REGION} ${MAIN_KEYWORD} 전문`,
-      }],
+        card: "summary_large_image",
+        title: homeTitle,
+        description: homeDescription,
+        images: [
+            {
+                url: `${SITE_URL}/images/fixed/1.png`,
+                alt: `${MAIN_REGION} ${MAIN_KEYWORD}`,
+            },
+        ],
     },
     alternates: {
-      canonical: "https://bananajeonju.netlify.app"
+        canonical: `${SITE_URL}/`,
     },
     robots: {
-      index: true,
-      follow: true,
-      "max-snippet": -1,
-      "max-image-preview": "large",
-      "max-video-preview": -1
+        index: true,
+        follow: true,
+        "max-snippet": -1,
+        "max-image-preview": "large",
+        "max-video-preview": -1,
     },
-    other: {
-      "google-site-verification": "YOUR_GOOGLE_VERIFICATION_CODE", // 구글 서치콘솔 인증 (실제 코드로 교체 필요)
-      "article:published_time": "2025-12-11T15:23:54+01:00",
-      "article:modified_time": new Date().toISOString(),
-    }
-  };
-}
+};
 
 export default function Home() {
-  const { jsonLd, faqs } = generateEnhancedSeo(MAIN_REGION, MAIN_KEYWORD, PAGE_ID);
+    const { faqs } = generateNaverSeo(MAIN_REGION, MAIN_KEYWORD, FAQ_SOURCE_ID);
+    const localBusinessSchema = {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        name: SITE_NAME,
+        description: homeDescription,
+        url: `${SITE_URL}/`,
+        areaServed: MAIN_REGION,
+        telephone: "010-0000-0000",
+        image: `${SITE_URL}/images/fixed/1.png`,
+    };
 
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLd }}
-      />
-      <MainPage faqs={faqs} />
-    </>
-  );
+    const websiteSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: SITE_NAME,
+        url: `${SITE_URL}/`,
+        inLanguage: "ko-KR",
+    };
+
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+            />
+            <MainPage faqs={faqs} />
+        </>
+    );
 }
