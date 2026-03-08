@@ -7,6 +7,7 @@ const FloatingCTA = () => {
             <div className="flex gap-2">
                 <a
                     href="tel:010-2115-3496"
+                    aria-label="전화 상담 010-2115-3496"
                     className="flex-1 bg-banana-red text-white py-3 rounded-xl flex justify-center items-center gap-2 font-bold text-lg shadow-lg active:scale-95 transition"
                 >
                     <div className="relative w-8 h-8 rounded-full overflow-hidden border-2 border-white/30">
@@ -22,6 +23,7 @@ const FloatingCTA = () => {
                 <a
                     href="http://pf.kakao.com/_xgQDxnxj"
                     target="_blank"
+                    aria-label="카카오톡 문의"
                     className="flex-1 bg-yellow-400 text-banana-black py-3 rounded-xl flex justify-center items-center gap-2 font-bold text-lg shadow-lg active:scale-95 transition"
                 >
                     <ChatBubbleLeftRightIcon className="h-6 w-6" />

@@ -16,12 +16,34 @@
   [headers.values]
     Content-Type = "text/plain; charset=utf-8"
 
-# SEO 크롤링 최적화 헤더
+# SEO 크롤링 최적화 + 보안 헤더
 [[headers]]
   for = "/*"
   [headers.values]
     X-Frame-Options = "SAMEORIGIN"
     X-Content-Type-Options = "nosniff"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    X-XSS-Protection = "1; mode=block"
+
+# 이미지 장기 캐싱
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Next.js 정적 파일 장기 캐싱
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# 폰트 장기 캐싱
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
 
 # 404 페이지 처리 (HTTP 404 응답)
 [[redirects]]

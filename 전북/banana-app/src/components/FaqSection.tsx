@@ -37,6 +37,8 @@ const FaqSection = ({ faqs }: FaqSectionProps) => {
                         >
                             <button
                                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
+                                aria-expanded={openIndex === idx}
+                                aria-controls={`faq-panel-${idx}`}
                                 className={`w-full flex justify-between items-center p-6 text-left transition-colors ${
                                     openIndex === idx
                                         ? "bg-banana-yellow text-black"
@@ -60,6 +62,8 @@ const FaqSection = ({ faqs }: FaqSectionProps) => {
                                 </span>
                             </button>
                             <div
+                                id={`faq-panel-${idx}`}
+                                role="region"
                                 className={`overflow-hidden transition-all duration-300 ${
                                     openIndex === idx ? "max-h-96" : "max-h-0"
                                 }`}

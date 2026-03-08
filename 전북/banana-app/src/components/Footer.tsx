@@ -11,9 +11,9 @@ const Footer = () => {
                         height="240"
                         frameBorder="0"
                         scrolling="no"
-                        referrerPolicy="unsafe-url"
-                        // @ts-expect-error -- nonstandard iframe attribute
-                        browsingtopics="true"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        title="쿠팡 파트너스 광고"
+                        {...({ browsingtopics: "true" } as React.IframeHTMLAttributes<HTMLIFrameElement>)}
                     ></iframe>
                     <iframe
                         src="https://coupa.ng/clcxsV"
@@ -21,9 +21,9 @@ const Footer = () => {
                         height="240"
                         frameBorder="0"
                         scrolling="no"
-                        referrerPolicy="unsafe-url"
-                        // @ts-expect-error -- nonstandard iframe attribute
-                        browsingtopics="true"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        title="쿠팡 파트너스 광고"
+                        {...({ browsingtopics: "true" } as React.IframeHTMLAttributes<HTMLIFrameElement>)}
                     ></iframe>
                     <iframe
                         src="https://coupa.ng/clcxsV"
@@ -31,9 +31,9 @@ const Footer = () => {
                         height="240"
                         frameBorder="0"
                         scrolling="no"
-                        referrerPolicy="unsafe-url"
-                        // @ts-expect-error -- nonstandard iframe attribute
-                        browsingtopics="true"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        title="쿠팡 파트너스 광고"
+                        {...({ browsingtopics: "true" } as React.IframeHTMLAttributes<HTMLIFrameElement>)}
                     ></iframe>
                     <iframe
                         src="https://coupa.ng/clcxsV"
@@ -41,9 +41,9 @@ const Footer = () => {
                         height="240"
                         frameBorder="0"
                         scrolling="no"
-                        referrerPolicy="unsafe-url"
-                        // @ts-expect-error -- nonstandard iframe attribute
-                        browsingtopics="true"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        title="쿠팡 파트너스 광고"
+                        {...({ browsingtopics: "true" } as React.IframeHTMLAttributes<HTMLIFrameElement>)}
                     ></iframe>
                 </div>
 

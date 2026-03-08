@@ -62,8 +62,20 @@ const mainFaqs = [
     },
 ];
 
+interface Region {
+    name: string;
+    count: number;
+    subText?: string;
+}
+
+interface RegionGroup {
+    sido: string;
+    sidoFull: string;
+    regions: Region[];
+}
+
 // 시도별 지역 데이터 (2026년 최신 행정구역 기준)
-const regionGroups = [
+const regionGroups: RegionGroup[] = [
     {
         sido: "전북",
         sidoFull: "전북특별자치도",
@@ -116,7 +128,7 @@ const regionGroups = [
 ];
 
 interface MainPageProps {
-    faqs?: any[];
+    faqs?: { question: string; answer: string }[];
 }
 
 export default function MainPage({ faqs }: MainPageProps) {
@@ -203,6 +215,7 @@ export default function MainPage({ faqs }: MainPageProps) {
                                         <Link
                                             key={region.name}
                                             href={`/gallery?si=${encodeURIComponent(region.name)}`}
+                                            title={`${region.name} 배관막힘 서비스 보기`}
                                             className="group bg-white border border-gray-200 rounded-2xl p-5 hover:border-banana-yellow hover:shadow-lg transition-all duration-300"
                                         >
                                             <div className="w-10 h-10 bg-gradient-to-br from-banana-yellow/20 to-banana-red/10 rounded-xl flex items-center justify-center mb-3">
@@ -211,8 +224,8 @@ export default function MainPage({ faqs }: MainPageProps) {
                                             <h4 className="text-lg font-bold text-slate-900 mb-1 group-hover:text-banana-red transition-colors font-outfit">
                                                 {region.name}
                                             </h4>
-                                            {(region as any).subText ? (
-                                                <p className="text-xs text-gray-400 mb-2">{(region as any).subText}</p>
+                                            {region.subText ? (
+                                                <p className="text-xs text-gray-400 mb-2">{region.subText}</p>
                                             ) : (
                                                 <p className="text-sm text-gray-500 mb-2">{region.count}개 지역</p>
                                             )}
@@ -327,7 +340,19 @@ export default function MainPage({ faqs }: MainPageProps) {
                 </div>
             </section>
 
-            {/* 12. 최종 CTA */}
+            {/* 12. 내부 링크 */}
+            <section className="py-12 bg-white">
+                <div className="container mx-auto px-4 max-w-2xl text-center space-y-4">
+                    <Link href="/about" title="바나나배관 소개 페이지" className="inline-block text-banana-red font-bold hover:underline mr-6">
+                        바나나배관 소개 보기
+                    </Link>
+                    <Link href="/gallery" title="전체 작업 갤러리 보기" className="inline-block text-banana-red font-bold hover:underline">
+                        전체 작업 갤러리 보기
+                    </Link>
+                </div>
+            </section>
+
+            {/* 13. 최종 CTA */}
             <section className="py-20 bg-banana-yellow text-center">
                 <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">지금 바로 연락하세요!</h2>
                 <a href="tel:010-2115-3496" className="inline-flex items-center gap-3 bg-black text-white px-10 py-5 rounded-full text-xl font-bold shadow-2xl">
