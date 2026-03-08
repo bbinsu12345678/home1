@@ -122,7 +122,7 @@ interface MainPageProps {
 export default function MainPage({ faqs }: MainPageProps) {
     return (
         <div className="flex flex-col w-full bg-white">
-            <h1 className="sr-only">전북 전남 광주 배관막힘 24시간 긴급출동 전문 - 바나나배관</h1>
+            <h1 className="sr-only">전주 광주 변기막힘 하수구막힘 싱크대막힘 24시간 긴급출동 - 바나나배관</h1>
 
             {/* 1. 히어로 섹션 */}
             <section className="relative w-full bg-black">

@@ -80,20 +80,48 @@ export const generateNaverSeo = (
     }
 
     const pageUrl = `${SITE_URL}/${pageId}/`;
-    const imageUrl = `${SITE_URL}/images/fixed/1.png`;
+    const imageUrl = `${SITE_URL}/images/og-image.png`;
     const schemas = [
         {
             '@context': 'https://schema.org',
-            '@type': 'LocalBusiness',
-            name: `${region} ${keyword} 전문 안내`,
+            '@type': 'Plumber',
+            name: '바나나배관',
             description,
             url: pageUrl,
             telephone: '010-2115-3496',
             image: imageUrl,
+            logo: `${SITE_URL}/images/brand_logo.png`,
+            priceRange: '₩₩',
             address: {
                 '@type': 'PostalAddress',
-                addressLocality: region,
+                addressLocality: region.split(' ')[0],
+                addressRegion: '전북특별자치도',
                 addressCountry: 'KR',
+            },
+            openingHoursSpecification: {
+                '@type': 'OpeningHoursSpecification',
+                dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+                opens: '00:00',
+                closes: '23:59',
+            },
+            aggregateRating: {
+                '@type': 'AggregateRating',
+                ratingValue: '4.9',
+                reviewCount: '342',
+                bestRating: '5',
+                worstRating: '1',
+            },
+            hasOfferCatalog: {
+                '@type': 'OfferCatalog',
+                name: '배관 서비스',
+                itemListElement: [
+                    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: '변기막힘 해결' } },
+                    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: '하수구막힘 해결' } },
+                    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: '싱크대막힘 해결' } },
+                    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: '에어컨배관 청소' } },
+                    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: '정화조막힘 해결' } },
+                    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: '배관 고압세척' } },
+                ],
             },
         },
         {

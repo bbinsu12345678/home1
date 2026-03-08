@@ -8,7 +8,8 @@ export const metadata: Metadata = {
     openGraph: {
         title: "바나나배관 - 15년 전통의 배관막힘 해결 전문가",
         description: "국가공인 자격증 보유, 3,000건 이상 무사고 시공, 고객만족도 98%",
-        images: [{ url: "/images/fixed/1.webp" }]
+        siteName: "바나나배관",
+        images: [{ url: "/images/og-image.png", width: 1200, height: 630, alt: "바나나배관 소개" }]
     }
 };
 

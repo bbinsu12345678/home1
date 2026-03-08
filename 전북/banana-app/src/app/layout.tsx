@@ -4,17 +4,19 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://bananajeonju.netlify.app';
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://bananajeonju.netlify.app'),
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "전주시 전북 배관막힘 긴급출동 | 지역업체 안내",
+    default: "전주 광주 변기막힘 하수구막힘 싱크대막힘 24시간 | 바나나배관",
     template: "%s"
   },
-  description: "전북 전남 광주 일대 배관막힘, 변기막힘, 싱크대막힘, 하수구막힘, 에어컨배관청소, 정화조막힘 전문 업체 정보. 24시간 긴급출동, 투명한 견적, 정화조뚫기까지 한 화면에서 확인하세요.",
-  keywords: ["배관막힘", "변기막힘", "싱크대막힘", "하수구막힘", "에어컨배관막힘", "에어컨배관청소", "정화조막힘", "정화조청소", "정화조뚫기", "배관청소", "긴급출동", "24시간", "전북", "전주", "익산", "군산", "광주", "전남", "정읍", "남원", "김제", "지역업체"],
-  authors: [{ name: "관리자" }],
-  creator: "지역업체 안내",
-  publisher: "지역업체 안내",
+  description: "전주, 광주, 전북, 전남 변기막힘·하수구막힘·싱크대막힘 24시간 긴급출동. 출장비 무료, 선견적 후시공.",
+  keywords: ["전주 변기막힘", "전주 하수구막힘", "전주 싱크대막힘", "광주 변기막힘", "광주 하수구막힘", "광주 싱크대막힘", "전주 배관막힘", "광주 배관막힘", "전북 배관막힘", "전남 배관막힘", "에어컨배관막힘", "정화조막힘", "배관막힘 24시간", "긴급출동"],
+  authors: [{ name: "바나나배관" }],
+  creator: "바나나배관",
+  publisher: "바나나배관",
   formatDetection: {
     telephone: true,
     email: false,
@@ -23,14 +25,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'ko_KR',
-    siteName: '지역업체 안내',
-    title: '전북 전남 광주 배관막힘 에어컨배관청소 정화조막힘 긴급출동',
-    description: '전북 전남 광주 일대 배관막힘, 에어컨배관청소, 정화조막힘 업체 정보를 한눈에 확인하세요',
+    siteName: '바나나배관',
+    title: '전주 광주 변기막힘 하수구막힘 싱크대막힘 24시간 긴급출동',
+    description: '전주, 광주, 전북, 전남 변기막힘·하수구막힘·싱크대막힘 전문. 출장비 무료, 24시간 긴급출동.',
     images: [{
-      url: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://bananajeonju.netlify.app'}/images/fixed/1.png`,
+      url: `${siteUrl}/images/og-image.png`,
       width: 1200,
       height: 630,
-      alt: '전북 전남 광주 배관막힘 에어컨배관청소 정화조막힘 전문',
+      alt: '전주 광주 변기막힘 하수구막힘 싱크대막힘 전문 바나나배관',
+      type: 'image/png',
     }],
   },
   robots: {

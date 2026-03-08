@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
     const keywordPart = `${keywordPermutation.join("")} ${tail}`;
     const { title, description } = generateNaverSeo(regionPart, keywordPart, id);
     const pageUrl = buildPageUrl(id);
-    const imageUrl = `${SITE_URL}/images/fixed/1.png`;
+    const imageUrl = `${SITE_URL}/images/og-image.png`;
     const publishedTime = "2025-12-11T15:23:54+01:00";
     const modifiedTime = new Date().toISOString();
 
@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
             title,
             description,
             url: pageUrl,
-            siteName: "Local Service Guide",
+            siteName: "바나나배관",
             type: "website",
             locale: "ko_KR",
             images: [
@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
                     url: imageUrl,
                     width: 1200,
                     height: 630,
-                    alt: `${regionPart} ${keywordPart}`,
+                    alt: `${regionPart} ${keywordPart} 전문 바나나배관`,
                     type: "image/png",
                 },
             ],
@@ -70,7 +70,7 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
             images: [
                 {
                     url: imageUrl,
-                    alt: `${regionPart} ${keywordPart}`,
+                    alt: `${regionPart} ${keywordPart} 전문 바나나배관`,
                 },
             ],
         },
